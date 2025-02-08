@@ -16,7 +16,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.heroes.api.heroesapi.persistence.HeroDAO;
+import com.heroes.api.heroesapi.persistence.EntryDAO;
+import com.heroes.api.heroesapi.model.Entry;
 import com.heroes.api.heroesapi.model.Hero;
 
 /**
@@ -29,38 +30,38 @@ import com.heroes.api.heroesapi.model.Hero;
  */
 
 @RestController
-@RequestMapping("heroes")
-public class HeroController {
-    private static final Logger LOG = Logger.getLogger(HeroController.class.getName());
-    private HeroDAO heroDao;
+@RequestMapping("entries")
+public class EntryController {
+    private static final Logger LOG = Logger.getLogger(EntryController.class.getName());
+    private EntryDAO entryDao;
 
     /**
      * Creates a REST API controller to reponds to requests
      * 
-     * @param heroDao The {@link HeroDAO Hero Data Access Object} to perform CRUD operations
+     * @param entryDao The {@link EntryDAO Hero Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
-    public HeroController(HeroDAO heroDao) {
-        this.heroDao = heroDao;
+    public EntryController(EntryDAO entryDao) {
+        this.entryDao = entryDao;
     }
 
     /**
-     * Responds to the GET request for a {@linkplain Hero hero} for the given id
+     * Responds to the GET request for a {@linkplain Entry entry} for the given id
      * 
-     * @param id The id used to locate the {@link Hero hero}
+     * @param id The id used to locate the {@link Entry entry}
      * 
-     * @return ResponseEntity with {@link Hero hero} object and HTTP status of OK if found<br>
+     * @return ResponseEntity with {@link Entry entry} object and HTTP status of OK if found<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Hero> getHero(@PathVariable int id) {
-        LOG.info("GET /heroes/" + id);
+    public ResponseEntity<Entry> getEntry(@PathVariable int id) {
+        LOG.info("GET /entries/" + id);
         try {
-            Hero hero = heroDao.getHero(id);
-            if (hero != null)
-                return new ResponseEntity<Hero>(hero,HttpStatus.OK);
+            Entry entry = entryDao.getEntry(id);
+            if (entry != null)
+                return new ResponseEntity<Entry>(entry,HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -71,15 +72,15 @@ public class HeroController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Hero heroes}
+     * Responds to the GET request for all {@linkplain Entry entries}
      * 
-     * @return ResponseEntity with array of {@link Hero hero} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Entry entry} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Hero[]> getHeroes() {
-        LOG.info("GET /heroes");
+    public ResponseEntity<Entry[]> getEntries() {
+        LOG.info("GET /entries");
 
         // Replace below with your implementation
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);

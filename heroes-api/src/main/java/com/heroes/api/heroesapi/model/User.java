@@ -1,8 +1,11 @@
+package com.heroes.api.heroesapi.model;
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     
+    
+
     private String username;
     private List<Entry> entries;
 

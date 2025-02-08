@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a Hero entity
- * 
- * @author SWEN Faculty
  */
 public class Hero {
     private static final Logger LOG = Logger.getLogger(Hero.class.getName());

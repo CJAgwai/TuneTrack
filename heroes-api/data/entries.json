@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "title": "Tragic Kingdom",
+        "artist": "No Doubt",
+        "year": "1995",
+        "genre": "Ska Punk",
+        "rating": 5,
+        "listenDate": "2021-05-01",
+        "review": "This is a great album. I love it",
+        "favoriteSong" : "Spiderwebs"
+
+    }
+    
+]
