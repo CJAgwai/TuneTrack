@@ -10,6 +10,17 @@
         "review": "This is a great album. I love it",
         "favoriteSong" : "Spiderwebs"
 
+    },
+    {
+        "id": 2,
+        "title": "The Miseducation of Lauryn Hill",
+        "artist": "Lauryn Hill",
+        "year": "1998",
+        "genre": "R&B",
+        "rating": 5,
+        "listenDate": "2021-05-01",
+        "review": "This is a great album. I love it twice",
+        "favoriteSong" : "Doo Wop (That Thing)"
     }
     
 ]

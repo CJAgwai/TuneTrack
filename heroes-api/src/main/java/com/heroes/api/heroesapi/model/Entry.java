@@ -49,18 +49,7 @@ public class Entry {
         this.favoriteSong = favoriteSong;
     }
 
-    public Entry(@JsonProperty("id") int id, @JsonProperty("title") String title) {
-        this.id = id;
-        this.title = title;
-        this.artist = "";
-        this.year = Year.of(2000);
-        this.genre = "";
-        this.rating = 0;
-        this.listenDate = LocalDate.now();
-        this.review = "";
-        this.favoriteSong = "";
-    }
-
+    
     // Getters
     public int getId() {
         return id;

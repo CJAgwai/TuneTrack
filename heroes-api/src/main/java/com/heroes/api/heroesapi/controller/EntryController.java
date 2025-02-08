@@ -82,22 +82,30 @@ public class EntryController {
     public ResponseEntity<Entry[]> getEntries() {
         LOG.info("GET /entries");
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            Entry[] entries = entryDao.getEntries();
+            if (entries != null)
+            return new ResponseEntity<Entry[]>(entries, HttpStatus.OK);
+            else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Hero heroes} whose name contains
+     * Responds to the GET request for all {@linkplain Entry entries} whose name contains
      * the text in name
      * 
-     * @param name The name parameter which contains the text used to find the {@link Hero heroes}
+     * @param name The name parameter which contains the text used to find the {@link Entry entries}
      * 
-     * @return ResponseEntity with array of {@link Hero hero} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Entry entries} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * <p>
-     * Example: Find all heroes that contain the text "ma"
-     * GET http://localhost:8080/heroes/?name=ma
+     * Example: Find all entries that contain the text "ma"
+     * GET http://localhost:8080/entries/?name=ma
      */
     @GetMapping("/")
     public ResponseEntity<Hero[]> searchHeroes(@RequestParam String name) {
