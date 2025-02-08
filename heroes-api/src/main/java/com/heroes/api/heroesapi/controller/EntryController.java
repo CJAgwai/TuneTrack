@@ -18,15 +18,13 @@ import java.util.logging.Logger;
 
 import com.heroes.api.heroesapi.persistence.EntryDAO;
 import com.heroes.api.heroesapi.model.Entry;
-import com.heroes.api.heroesapi.model.Hero;
 
 /**
- * Handles the REST API requests for the Hero resource
+ * Handles the REST API requests for the Entry resource
  * <p>
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author SWEN Faculty
  */
 
 @RestController
@@ -38,7 +36,7 @@ public class EntryController {
     /**
      * Creates a REST API controller to reponds to requests
      * 
-     * @param entryDao The {@link EntryDAO Hero Data Access Object} to perform CRUD operations
+     * @param entryDao The {@link EntryDAO Entry Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
@@ -108,7 +106,7 @@ public class EntryController {
      * GET http://localhost:8080/entries/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Entry[]> searchHeroes(@RequestParam String title) {
+    public ResponseEntity<Entry[]> searchEntries(@RequestParam String title) {
         LOG.info("GET /entries/?title="+title);
 
         try {
@@ -125,53 +123,84 @@ public class EntryController {
     }
 
     /**
-     * Creates a {@linkplain Hero hero} with the provided hero object
+     * Creates a {@linkplain Entry entry} with the provided entry object
      * 
-     * @param hero - The {@link Hero hero} to create
+     * @param entry - The {@link Entry entry} to create
      * 
-     * @return ResponseEntity with created {@link Hero hero} object and HTTP status of CREATED<br>
-     * ResponseEntity with HTTP status of CONFLICT if {@link Hero hero} object already exists<br>
+     * @return ResponseEntity with created {@link Entry entry} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Entry entry} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PostMapping("")
-    public ResponseEntity<Hero> createHero(@RequestBody Hero hero) {
-        LOG.info("POST /heroes " + hero);
+    public ResponseEntity<Entry> createEntry(@RequestBody Entry entry) {
+        LOG.info("POST /entries " + entry);
+        try {
+            Entry new_entry = entryDao.createEntry(entry);
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+            if (new_entry == null) {
+                // Return 409 CONFLICT if creation failed
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+            
+            return new ResponseEntity<Entry>(new_entry, HttpStatus.CREATED);
+            
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+    
 
     /**
-     * Updates the {@linkplain Hero hero} with the provided {@linkplain Hero hero} object, if it exists
+     * Updates the {@linkplain Entry entry} with the provided {@linkplain Entry entry} object, if it exists
      * 
-     * @param hero The {@link Hero hero} to update
+     * @param entry The {@link Entry entry} to update
      * 
-     * @return ResponseEntity with updated {@link Hero hero} object and HTTP status of OK if updated<br>
+     * @return ResponseEntity with updated {@link Entry entry} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
-    public ResponseEntity<Hero> updateHero(@RequestBody Hero hero) {
-        LOG.info("PUT /heroes " + hero);
+    public ResponseEntity<Entry> updateEntry(@RequestBody Entry entry) {
+        LOG.info("PUT /entries " + entry);
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            Entry updatedEntry = entryDao.updateEntry(entry);
+
+            if (updatedEntry == null)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else
+                return new ResponseEntity<>(updatedEntry, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+    
 
     /**
-     * Deletes a {@linkplain Hero hero} with the given id
+     * Deletes a {@linkplain Entry entry} with the given id
      * 
-     * @param id The id of the {@link Hero hero} to deleted
+     * @param id The id of the {@link Entry entry} to deleted
      * 
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Hero> deleteHero(@PathVariable int id) {
-        LOG.info("DELETE /heroes/" + id);
+    public ResponseEntity<Entry> deleteEntry(@PathVariable int id) {
+        LOG.info("DELETE /entries/" + id);
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try{
+            boolean result = entryDao.deleteEntry(id);
+            if (result == false)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else
+            return new ResponseEntity<>(HttpStatus.OK);
+
+        } catch (IOException e){
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
