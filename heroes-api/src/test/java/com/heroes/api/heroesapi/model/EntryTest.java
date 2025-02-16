@@ -15,17 +15,7 @@ import org.junit.jupiter.api.Test;
  */
 @Tag("Model-tier")
 public class EntryTest {
-    @Test
-    public void testIdConstructor() {
-        // Setup
-        int expected_id = 99;
-
-        // Invoke
-        Entry entry = new Entry(99);
-
-        // Analyze
-        assertEquals(expected_id, entry.getId());
-    }
+    
 
     @Test
     public void testConstructor() {
@@ -58,7 +48,7 @@ public class EntryTest {
     @Test
     public void testSetters() {
         // Setup
-        Entry entry = new Entry(1);
+        Entry entry = new Entry(31, "Alligator Bites Never Heal", "Doechii", Year.of(2025), "Rap", 4, LocalDate.of(2025, 2, 15), "Great Album", "Nissan Altima");
         String expected_title = "New Title";
         String expected_artist = "New Artist";
         Year expected_year = Year.of(2022);
