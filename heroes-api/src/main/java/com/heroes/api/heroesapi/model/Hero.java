@@ -1,13 +1,11 @@
 package com.heroes.api.heroesapi.model;
 
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a Hero entity
  */
 public class Hero {
-    private static final Logger LOG = Logger.getLogger(Hero.class.getName());
 
     // Package private for tests
     static final String STRING_FORMAT = "Hero [id=%d, name=%s]";
