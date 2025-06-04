@@ -1,3 +1,7 @@
-<h2>{{entry.title}} Details</h2>
-<div><span>id: </span>{{entry.id}}</div>
-<div><span>name: </span>{{entry.title}}</div>
+<ul>
+<li *ngFor="let entry of entries" class="list-group-item">
+  <p>{{entry.title}}</p>
+  <p>{{entry.artist}}</p>
+  <p>{{entry.year}}</p>
+
+</ul>
