@@ -9,6 +9,7 @@ import { EntryService } from '../entry.service';
 })
 export class EntriesComponent implements OnInit {
   entries: Entry[] = [];
+  selectedEntry?: Entry;
 
   constructor(private entryService: EntryService) { }
 

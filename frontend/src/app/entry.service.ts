@@ -115,7 +115,7 @@ export class EntryService {
     };
   }
   private log(message: string) {
-    this.messageService.add(`NeedService: ${message}`);
+    this.messageService.add(`EntryService: ${message}`);
   }
 }
 

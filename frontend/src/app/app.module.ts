@@ -6,19 +6,23 @@ import { AppComponent } from './app.component';
 import { EntriesComponent } from './entries/entries.component';
 import { MessageComponent } from './message/message.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EntryDetailComponent } from './entry-detail/entry-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EntriesComponent,
-    MessageComponent
+    MessageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    EntryDetailComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })
