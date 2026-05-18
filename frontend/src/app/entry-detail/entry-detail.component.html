@@ -1,10 +1,19 @@
 <div *ngIf="entry">
-  <h2>{{entry.title | uppercase}} Details</h2>
-  <div><span>id: </span>{{entry.id}}</div>
+  <h2>{{entry.title}}</h2>
   <div>
-    <label for="entry-title">Entry name: </label>
-    <input id="entry-title" [(ngModel)]="entry.title" placeholder="Entry name"/>
+    
+    <label>{{entry.artist}}</label><br>
+    <label>{{entry.year}}</label><br>
+    <label>{{entry.genre}}</label><br>
   </div>
-  <!-- <button type="button" (click)="goBack()">go back</button> -->
+  <br>
+  <div>
+    <label> Listen Date: {{entry.listenDate}}</label><br>
+    <label> Rating: {{entry.rating}}/5</label><br>
+    <label> Review: {{entry.review}}</label><br>
+  </div>
+
+<div>
+  <button type="button" (click)="goBack()">go back</button>
 </div>
   
