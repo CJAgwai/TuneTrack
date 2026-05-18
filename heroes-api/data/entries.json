@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "entryid": 1,
         "title": "Tragic Kingdom",
         "artist": "No Doubt",
         "year": "1995",
@@ -11,7 +11,7 @@
         "favoriteSong": "Spiderwebs"
     },
     {
-        "id": 3,
+        "entryid": 3,
         "title": "Transistor",
         "artist": "311",
         "year": "1997",

@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Entry {
    
-    static final String STRING_FORMAT = "Entry [id=%d, title=%s, artist=%s, year=%s, rating=%d, listenDate=%s, review=%s, favoriteSong=%s]";
+    static final String STRING_FORMAT = "Entry [entryid=%d, title=%s, artist=%s, year=%s, rating=%d, listenDate=%s, review=%s, favoriteSong=%s]";
 
-    @JsonProperty("id") private int id;
+    @JsonProperty("entryid") private int entryid;
     @JsonProperty("title") private String title;
     @JsonProperty("artist") private String artist;
     @JsonProperty("year") private Year year;
@@ -21,7 +21,7 @@ public class Entry {
     /**
      * Create an entry with the given id, title, artist, year, rating, 
      * listenDate, review, and favoriteSong
-     * @param id The id of the entry
+     * @param entryid The id of the entry
      * @param title The title of the album
      * @param artist The artist of the album
      * @param year The year the album was released
@@ -37,8 +37,8 @@ public class Entry {
      * value, i.e. 0 for int
      */
 
-    public Entry(@JsonProperty("id") int id, @JsonProperty("title") String title,@JsonProperty("artist") String artist, @JsonProperty("year") Year year,@JsonProperty("genre") String genre, @JsonProperty("rating") int rating, @JsonProperty("listenDate")LocalDate listenDate, @JsonProperty("review") String review, @JsonProperty("favoriteSong") String favoriteSong) {
-        this.id = id;
+    public Entry(@JsonProperty("entryid") int entryid, @JsonProperty("title") String title,@JsonProperty("artist") String artist, @JsonProperty("year") Year year,@JsonProperty("genre") String genre, @JsonProperty("rating") int rating, @JsonProperty("listenDate")LocalDate listenDate, @JsonProperty("review") String review, @JsonProperty("favoriteSong") String favoriteSong) {
+        this.entryid = entryid;
         this.title = title;
         this.artist = artist;
         this.year = year;
@@ -53,7 +53,7 @@ public class Entry {
     
     // Getters
     public int getId() {
-        return id;
+        return entryid;
     }
 
     public String getTitle() {
@@ -123,6 +123,6 @@ public class Entry {
     
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,title,artist,year,rating,listenDate,review,favoriteSong);
+        return String.format(STRING_FORMAT,entryid,title,artist,year,rating,listenDate,review,favoriteSong);
     }
 }
