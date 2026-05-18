@@ -8,13 +8,15 @@ import { MessageComponent } from './message/message.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EntryDetailComponent } from './entry-detail/entry-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EntriesComponent,
     MessageComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
